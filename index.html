@@ -1,12 +1,211 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="utf-8" />
-    <title>Recette de Crêpe</title>
-  </head>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Crêpes bretonnes – recettes de la crêperie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f8fa;--surface:#ffffff;--ink:#14213d;--muted:#4b5a75;--navy:#14213d;--butter:#f4c542;
+  --sarrasin:#6b4a2f;--line:#d5dce6;--on-navy:#f6f8fa;--stripe:#e9eef5;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0d1526;--surface:#16213a;--ink:#eef2f8;--muted:#a9b6cc;--navy:#0a1020;--butter:#f4c542;
+  --sarrasin:#d9b48a;--line:#2a3a5c;--on-navy:#eef2f8;--stripe:#1d2b4a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0d1526;--surface:#16213a;--ink:#eef2f8;--muted:#a9b6cc;--navy:#0a1020;--butter:#f4c542;--sarrasin:#d9b48a;--line:#2a3a5c;--on-navy:#eef2f8;--stripe:#1d2b4a;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Figtree,system-ui,sans-serif;font-size:1.0625rem;line-height:1.6}
+h1,h2,h3{font-family:"Young Serif",Georgia,serif;font-weight:400;line-height:1.15;margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--butter);outline-offset:3px}
+.wrap{max-width:62rem;margin:0 auto;padding:0 1.25rem}
 
-  <body>
-    <h1>Ingrédients</h1>
-    <p>Farine :</p>
-  </body>
+/* Hero : la marinière */
+.hero{background:repeating-linear-gradient(0deg,var(--navy) 0 2.2rem,var(--stripe) 2.2rem 3.4rem);padding:4rem 0}
+.hero .card{background:var(--navy);color:var(--on-navy);max-width:34rem;padding:2.5rem 2rem;border-radius:2px;box-shadow:0 0 0 6px var(--butter)}
+.hero h1{font-size:clamp(2.4rem,8vw,4rem)}
+.hero p{margin:1rem 0 1.5rem;color:var(--on-navy);opacity:.9}
+.btn{display:inline-block;background:var(--butter);color:#14213d;font-weight:700;text-decoration:none;padding:.75rem 1.4rem;border-radius:999px}
+nav{background:var(--surface);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:1.5rem;flex-wrap:wrap;padding-top:.9rem;padding-bottom:.9rem;font-weight:500}
+nav a{text-decoration:none;color:var(--muted)}nav a:hover{color:var(--ink)}
+
+section{padding:3.5rem 0}
+section h2{font-size:clamp(1.8rem,5vw,2.5rem);margin-bottom:.75rem}
+.lead{max-width:40rem;color:var(--muted)}
+
+/* Recettes */
+.tabs{display:flex;gap:.5rem;margin:1.5rem 0;flex-wrap:wrap}
+.tab{font:inherit;font-weight:700;padding:.65rem 1.2rem;border:2px solid var(--ink);background:transparent;color:var(--ink);border-radius:999px;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+.panel{display:grid;grid-template-columns:1fr;gap:2rem;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:1.75rem}
+@media(min-width:760px){.panel{grid-template-columns:5fr 6fr}}
+.panel[hidden]{display:none}
+.meta{color:var(--muted);margin:.5rem 0 1.25rem}
+.stepper{display:flex;align-items:center;gap:.75rem;margin-bottom:1rem}
+.stepper button{width:2.4rem;height:2.4rem;border-radius:50%;border:2px solid var(--ink);background:transparent;color:var(--ink);font:inherit;font-size:1.2rem;cursor:pointer}
+.stepper output{min-width:6.5rem;text-align:center;font-weight:700}
+ul.ing{list-style:none;margin:0;padding:0}
+ul.ing li{display:flex;justify-content:space-between;gap:1rem;padding:.55rem 0;border-bottom:1px dashed var(--line)}
+ul.ing b{white-space:nowrap}
+ol.steps{margin:0;padding-left:1.3rem}ol.steps li{margin-bottom:.8rem;padding-left:.3rem}
+.tip{margin-top:1.25rem;padding:.9rem 1rem;border-left:5px solid var(--butter);background:var(--bg)}
+h3{font-size:1.35rem;margin-bottom:.4rem}
+
+/* Garnitures */
+.garn{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));margin-top:1.5rem}
+.garn div{border-top:6px solid var(--butter);background:var(--surface);padding:1.1rem 1.2rem 1.3rem}
+.garn div:nth-child(even){border-top-color:var(--sarrasin)}
+.garn p{margin:.3rem 0 0;color:var(--muted)}
+
+/* Astuces */
+.astuces{background:var(--navy);color:var(--on-navy)}
+.astuces .lead{color:var(--on-navy);opacity:.85}
+.astuces dl{display:grid;gap:1.25rem 2.5rem;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));margin:1.75rem 0 0}
+.astuces dt{font-family:"Young Serif",Georgia,serif;font-size:1.2rem;color:var(--butter)}
+.astuces dd{margin:.25rem 0 0;opacity:.9}
+footer{padding:2rem 0;color:var(--muted);font-size:.95rem}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="card">
+      <h1>Crêpes<br>bretonnes</h1>
+      <p>Froment sucré, sarrasin salé, beurre demi-sel : les recettes de la crêperie, à faire chez soi.</p>
+      <a class="btn" href="#recettes">Voir les recettes</a>
+    </div>
+  </div>
+</header>
+<nav aria-label="Navigation principale"><div class="wrap">
+  <a href="#recettes">Recettes</a><a href="#garnitures">Garnitures</a><a href="#astuces">Astuces</a>
+</div></nav>
+
+<main>
+<section id="recettes"><div class="wrap">
+  <h2>Deux pâtes, deux traditions</h2>
+  <p class="lead">En Bretagne, la crêpe sucrée se fait avec de la farine de froment, la galette salée avec du sarrasin. Choisissez la pâte, puis le nombre de convives.</p>
+
+  <div class="tabs" role="tablist" aria-label="Choisir une recette">
+    <button class="tab" role="tab" id="t-fro" aria-controls="p-fro" aria-selected="true">Crêpes de froment</button>
+    <button class="tab" role="tab" id="t-sar" aria-controls="p-sar" aria-selected="false">Galettes de sarrasin</button>
+  </div>
+
+  <article class="panel" id="p-fro" role="tabpanel" aria-labelledby="t-fro" data-base="4">
+    <div>
+      <h3>Crêpes de froment</h3>
+      <p class="meta">Préparation 10 min · repos 1 h · cuisson 20 min</p>
+      <div class="stepper"><button type="button" data-d="-1" aria-label="Moins de personnes">−</button><output aria-live="polite"></output><button type="button" data-d="1" aria-label="Plus de personnes">+</button></div>
+      <ul class="ing">
+        <li>Farine de blé T45 <b data-q="250" data-u="g"></b></li>
+        <li>Œufs <b data-q="3" data-u=""></b></li>
+        <li>Lait entier <b data-q="50" data-u="cl"></b></li>
+        <li>Beurre fondu <b data-q="50" data-u="g"></b></li>
+        <li>Sucre <b data-q="2" data-u="c. à soupe"></b></li>
+        <li>Sel <b>1 pincée</b></li>
+      </ul>
+    </div>
+    <div>
+      <ol class="steps">
+        <li>Mélangez la farine, le sucre et le sel dans un grand saladier. Creusez un puits.</li>
+        <li>Ajoutez les œufs, puis versez le lait peu à peu en fouettant pour éviter les grumeaux.</li>
+        <li>Incorporez le beurre fondu. Laissez reposer au moins 1 heure.</li>
+        <li>Faites chauffer une crêpière beurrée, versez une louche de pâte, étalez vite.</li>
+        <li>Retournez quand les bords se détachent, après environ 1 minute. Dorez l’autre face 30 secondes.</li>
+      </ol>
+      <p class="tip">Pour les grandes occasions, ajoutez 2 cuillères à soupe de rhum ambré dans la pâte.</p>
+    </div>
+  </article>
+
+  <article class="panel" id="p-sar" role="tabpanel" aria-labelledby="t-sar" data-base="4" hidden>
+    <div>
+      <h3>Galettes de sarrasin</h3>
+      <p class="meta">Préparation 10 min · repos 2 h · cuisson 25 min</p>
+      <div class="stepper"><button type="button" data-d="-1" aria-label="Moins de personnes">−</button><output aria-live="polite"></output><button type="button" data-d="1" aria-label="Plus de personnes">+</button></div>
+      <ul class="ing">
+        <li>Farine de sarrasin <b data-q="250" data-u="g"></b></li>
+        <li>Eau froide <b data-q="50" data-u="cl"></b></li>
+        <li>Œuf <b data-q="1" data-u=""></b></li>
+        <li>Gros sel <b data-q="8" data-u="g"></b></li>
+        <li>Beurre demi-sel, pour la poêle <b>à volonté</b></li>
+      </ul>
+    </div>
+    <div>
+      <ol class="steps">
+        <li>Mettez la farine et le sel dans un saladier, ajoutez l’œuf.</li>
+        <li>Versez l’eau progressivement en fouettant jusqu’à obtenir une pâte lisse et fluide.</li>
+        <li>Couvrez et laissez reposer 2 heures, voire une nuit au frais.</li>
+        <li>Faites chauffer une galetière bien chaude et graissez-la au beurre demi-sel.</li>
+        <li>Étalez une louche de pâte en fine couche. Garnissez, puis repliez les quatre bords vers le centre.</li>
+      </ol>
+      <p class="tip">Le sarrasin ne contient pas de gluten, mais vérifiez la mention « sans gluten » sur le paquet si vous êtes intolérant.</p>
+    </div>
+  </article>
+</div></section>
+
+<section id="garnitures"><div class="wrap">
+  <h2>Garnitures classiques</h2>
+  <div class="garn">
+    <div><h3>La complète</h3><p>Jambon blanc, emmental râpé et un œuf au plat, cuit directement sur la galette.</p></div>
+    <div><h3>Caramel au beurre salé</h3><p>Faites un caramel avec 150 g de sucre, ajoutez 100 g de beurre demi-sel puis 20 cl de crème chaude.</p></div>
+    <div><h3>Andouille de Guémené</h3><p>Fines tranches d’andouille chaude, pommes de terre et une pointe de moutarde.</p></div>
+    <div><h3>Pomme et cidre</h3><p>Pommes poêlées au beurre, flambées au calva, sur une crêpe de froment.</p></div>
+  </div>
+</div></section>
+
+<section id="astuces" class="astuces"><div class="wrap">
+  <h2>Les astuces de la crêperie</h2>
+  <p class="lead">Quelques gestes simples font la différence entre une bonne et une très bonne crêpe.</p>
+  <dl>
+    <dt>Le repos</dt><dd>Il détend le gluten et gonfle la farine : la pâte s’étale plus facilement et la crêpe reste tendre.</dd>
+    <dt>La première est pour la poêle</dt><dd>Elle sert à régler la température. Si elle brûle, baissez le feu ; si elle est pâle, montez-le.</dd>
+    <dt>Le beurre demi-sel</dt><dd>Un petit morceau sur la poêle, essuyé au papier, suffit à graisser et parfume la galette.</dd>
+    <dt>Le cidre brut</dt><dd>La boisson classique pour accompagner, servie dans une bolée bien fraîche.</dd>
+  </dl>
+</div></section>
+</main>
+
+<footer><div class="wrap">Kenavo et bon appétit ! Les quantités sont données pour 4 personnes, soit environ 12 crêpes.</div></footer>
+
+<script>
+(function(){
+  var fmt=function(q,u){
+    var v;
+    if(u==="g"){v=Math.round(q/5)*5}
+    else if(u===""){v=Math.round(q*2)/2}
+    else{v=Math.round(q*2)/2}
+    var s=Math.floor(v)+(v%1?"½":"");
+    if(v<1&&v>0)s="½";
+    return s+(u?" "+u:"");
+  };
+  document.querySelectorAll(".panel").forEach(function(p){
+    var base=+p.dataset.base,n=base,out=p.querySelector("output");
+    function render(){
+      out.textContent=n+" personnes";
+      p.querySelectorAll("[data-q]").forEach(function(b){
+        b.textContent=fmt(+b.dataset.q*n/base,b.dataset.u);
+      });
+    }
+    p.querySelectorAll(".stepper button").forEach(function(b){
+      b.addEventListener("click",function(){n=Math.min(12,Math.max(2,n+ +b.dataset.d));render()});
+    });
+    render();
+  });
+  var tabs=document.querySelectorAll(".tab");
+  tabs.forEach(function(t){
+    t.addEventListener("click",function(){
+      tabs.forEach(function(o){
+        var on=o===t;o.setAttribute("aria-selected",on);
+        document.getElementById(o.getAttribute("aria-controls")).hidden=!on;
+      });
+    });
+  });
+})();
+</script>
+</body>
 </html>
